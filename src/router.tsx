@@ -7,6 +7,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Navigate to="/chat" replace />,
+
     },
     {
         path: '/login',
@@ -20,4 +21,7 @@ export const router = createBrowserRouter([
         path: '*',
         element: <NotFoundPage />,
     },
-])
+],
+    {
+        basename: '/green',
+    })

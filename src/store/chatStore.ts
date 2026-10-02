@@ -50,10 +50,10 @@ export const useChatStore = create<ChatState>()(
             name: 'greenapi.chat',
             storage: createJSONStorage(() => localStorage),
 
-            // partialize: (state) => ({
-            //     // phoneNumber: state.phoneNumber,
-            //     // chatId: state.chatId,
-            // }),
+            partialize: () => ({
+                // phoneNumber: state.phoneNumber,
+                // chatId: state.chatId,
+            }),
         },
     ),
 )
