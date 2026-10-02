@@ -2,6 +2,8 @@ import {useState} from 'react';
 import {Popup} from "../ui/Popup.tsx";
 import {useChatStore} from "../../store/chatStore.ts";
 import {startChatService} from "../../services/chatService.ts";
+import Lizard from "../lizard.tsx";
+import {createPortal} from "react-dom";
 
 interface PhoneNumberPopupProps {
     open: boolean;
@@ -19,7 +21,7 @@ const PhoneNumberPopup = ({open, setOpen}: PhoneNumberPopupProps) => {
         setOpen(false)
     }
 
-    return (
+    return [
         <Popup
             open={open}
             onClose={() => setOpen(false)}
@@ -55,8 +57,14 @@ const PhoneNumberPopup = ({open, setOpen}: PhoneNumberPopupProps) => {
                transition-colors"
                 />
             </div>
-        </Popup>
-    );
+            {createPortal(
+                <div style={{ position: 'fixed', bottom: 0, right: 20, zIndex: 9999 }}>
+                    <Lizard />
+                </div>,
+                document.body
+            )}
+        </Popup>,
+    ];
 };
 
 export default PhoneNumberPopup;
