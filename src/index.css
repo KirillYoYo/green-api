@@ -1,0 +1,21 @@
+@import "tailwindcss/index";
+@import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/*body {*/
+/*    padding: 10px;*/
+/*}*/
