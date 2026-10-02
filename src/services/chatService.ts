@@ -5,10 +5,9 @@ import {getChatHistory} from "../api/greenApi.ts";
 
 const { setChatId, setMessages } = useChatStore.getState()
 
-export function startChatService(phoneNumber: number) {
-    checkAccount({phoneNumber: Number(phoneNumber)}).then(res => {
-        setChatId(res.chatId);
-    })
+export async function startChatService(phoneNumber: number) {
+    const res = await checkAccount({phoneNumber: Number(phoneNumber)})
+    setChatId(res.chatId);
 }
 
 // подписка на изменение chatId

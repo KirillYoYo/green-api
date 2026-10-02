@@ -56,6 +56,7 @@ export function ChatMessageList() {
         <div
             ref={parentRef}
             className="flex-1 overflow-y-auto px-2 sm:px-4 py-3"
+            style={{background: 'rgba(0,0,0, 0.1)'}}
         >
             <div
                 style={{

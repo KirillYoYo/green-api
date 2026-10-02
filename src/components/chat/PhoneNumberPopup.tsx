@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {type Dispatch, type SetStateAction, useState} from 'react';
 import {Popup} from "../ui/Popup.tsx";
 import {useChatStore} from "../../store/chatStore.ts";
 import {startChatService} from "../../services/chatService.ts";
@@ -8,16 +8,20 @@ import {createPortal} from "react-dom";
 interface PhoneNumberPopupProps {
     open: boolean;
     setOpen: (open: boolean) => void;
+    setIstartLoading: Dispatch<SetStateAction<boolean>>;
+    setIEndLoading: Dispatch<SetStateAction<boolean>>;
 }
 
-const PhoneNumberPopup = ({open, setOpen}: PhoneNumberPopupProps) => {
+const PhoneNumberPopup = ({open, setOpen, setIstartLoading, setIEndLoading}: PhoneNumberPopupProps) => {
 
     const [formPhoneNumber, setFormPhoneNumber] = useState("");
     const setPhoneNumber = useChatStore((s) => s.setPhoneNumber)
 
-    const onSuccess = () => {
+    const onSuccess = async () => {
+        setIstartLoading(true);
         setPhoneNumber(formPhoneNumber)
-        startChatService(Number(formPhoneNumber))
+        await startChatService(Number(formPhoneNumber))
+        setIEndLoading(true)
         setOpen(false)
     }
 
